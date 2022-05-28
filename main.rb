@@ -3,6 +3,7 @@ require 'open-uri'
 require 'json'
 require 'fileutils'
 require 'win32-clipboard'
+ENV['SSL_CERT_FILE'] = File.join(File.dirname($0), 'cert.pem')
 
 
 # --- APIから作品情報を取得するメソッド

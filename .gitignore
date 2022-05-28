@@ -54,3 +54,13 @@ build-iPhoneSimulator/
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
+
+# テスト用ファイル
+*.exe
+sm[0-9]*
+im[0-9]*
+nc[0-9]*
+td[0-9]*
+lv[0-9]*
+gm[0-9]*
+

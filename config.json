@@ -1,0 +1,5 @@
+{
+	"file_pattern" : "${id}_${title}",
+	"copy_pattern" : "${title} (${id}) by ${creator}",
+	"rename_mode"  : "copy"
+}

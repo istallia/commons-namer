@@ -4,6 +4,7 @@ require 'json'
 require 'fileutils'
 require 'win32-clipboard'
 ENV['SSL_CERT_FILE'] = File.join(File.dirname($0), 'cert.pem')
+version = 'r1'
 
 
 # --- APIから作品情報を取得するメソッド
@@ -66,6 +67,14 @@ def get_new_name (pattern, id)
 end
 
 
+# --- タイトル表示
+puts <<"EOS"
+------------------------------------------------------------
+コモンズネーマー #{version} by イスターリャ (@is_ptcm)
+------------------------------------------------------------
+EOS
+
+
 # --- 設定を読み込み
 config = File.open('./config.json', mode='r') do |f|
 	JSON.load(f)
@@ -78,6 +87,7 @@ if ARGV.length < 1 then
 	clip_text    = Win32::Clipboard.data(Win32::Clipboard::UNICODETEXT)
 	if clip_pattern.match?(clip_text) then
 		replaced_text = get_new_name(config['copy_pattern'], clip_text)
+		print 'クリップボード置換: ', replaced_text, "\n"
 		Win32::Clipboard.set_data(replaced_text, Win32::Clipboard::UNICODETEXT)
 	end
 	exit
@@ -100,6 +110,7 @@ ARGV.each do |filepath|
 			else
 				FileUtils.mv abspath, "#{dirpath}/#{new_filename}", {:secure => true}
 			end
+			print 'ファイル名置換: ', filename, ' -> ', new_filename, "\n"
 		end
 	end
 end
